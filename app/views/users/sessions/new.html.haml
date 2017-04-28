@@ -1,0 +1,19 @@
+.container
+  .row{style: 'padding-top: 100px;'}
+    .col-md-6.col-md-offset-3
+      .login-panel.panel.panel-default
+        .panel-heading
+          %h3.panel-title Sign In
+        .panel-body
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            %fieldset
+              .form-group
+                = f.label :email
+                = f.email_field :email, class: 'form-control', autofocus: true
+              .form-group
+                = f.label :password
+                = f.password_field :password, autocomplete: "off", class: 'form-control'
+              .actions
+                = f.submit "Sign In", class: "btn btn-success btn-block"
+              .actions
+                = render "users/shared/links"
