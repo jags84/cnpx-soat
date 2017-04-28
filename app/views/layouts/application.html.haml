@@ -4,8 +4,9 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title SOAT
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all'
+    = stylesheet_link_tag 'application', media: 'all'
     = stylesheet_link_tag "#{controller_name}", :media => "all"
+
   %body
     %nav.navbar.navbar-default
       .container-fluid
@@ -21,12 +22,20 @@
         - unless current_user.nil?
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             %ul.nav.navbar-nav.navbar-right
+              %li{class: "#{controller_name=='dashboard' ? 'active':''}"}
+                %a{:href => "#"} Dashboard
+              %li{class: "#{controller_name=='policies' ? 'active':''}"}
+                %a{:href => "#"}
+                  Policies
               %li.dropdown
                 %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                  = current_user.username
+                  = current_user.name
                   %span.caret
                 %ul.dropdown-menu
                   %li
-                    = link_to 'Leave Chat',user_path(current_user), method: :delete
+                    %a{:href => "#"} Action
+                  %li
+                    = link_to 'Logout', destroy_user_session_path, :method => :delete
     = yield
+    = javascript_include_tag 'application'
     = javascript_include_tag "#{controller_name}"
