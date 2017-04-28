@@ -31,9 +31,7 @@
                   %td= number_to_currency(policy.total, precision: 2)
                   %td
                     = link_to 'Show', policy, class: "btn btn-default"
-                    \|
                     = link_to 'Pay Policy', edit_policy_path(policy), class: "btn btn-success"
-                    \|
                     = link_to 'Delete', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
 
-            = link_to 'New Policy', new_policy_path
+          = link_to 'New Policy', new_policy_path, class: 'btn btn-success'
