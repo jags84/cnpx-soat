@@ -4,7 +4,7 @@ class PoliciesController < ApplicationController
   # GET /policies
   # GET /policies.json
   def index
-    @policies = Policy.all
+    @policies = current_user.policies.all
   end
 
   # GET /policies/1
@@ -14,7 +14,7 @@ class PoliciesController < ApplicationController
 
   # GET /policies/new
   def new
-    @policy = Policy.new
+    @policy = current_user.policies.new
   end
 
   # GET /policies/1/edit
@@ -24,7 +24,7 @@ class PoliciesController < ApplicationController
   # POST /policies
   # POST /policies.json
   def create
-    @policy = Policy.new(policy_params)
+    @policy = current_user.policies.new(policy_params)
 
     respond_to do |format|
       if @policy.save
@@ -69,6 +69,6 @@ class PoliciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def policy_params
-      params.require(:policy).permit(:vehicle_type_id, :vehicle_sub_type_id, :user_id, :age, :number_of_passengers, :engine_cylinder, :tons, :plate, :issue_date, :expiration_date, :commercial_rate, :premium, :fosyga, :runt, :total)
+      params.require(:policy).permit(:vehicle_type_id, :vehicle_sub_type_id, :user_id, :age, :number_of_passengers, :engine_cylinder, :tons, :plate)
     end
 end

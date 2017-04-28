@@ -12,43 +12,26 @@
           %table.table.table-bordered
             %thead
               %tr
-                %th Vehicle type
+                %th Policy ID
                 %th Vehicle sub type
-                %th Age
-                %th Number of passengers
-                %th Engine cylinder
-                %th Tons
                 %th Plate
                 %th Issue date
                 %th Expiration date
-                %th Commercial rate
-                %th Premium
-                %th Fosyga
-                %th Runt
                 %th Total
-                %th
-                %th
-                %th
+                %th Actions
 
             %tbody
               - @policies.each do |policy|
                 %tr
-                  %td= policy.vehicle_type
-                  %td= policy.vehicle_sub_type
-                  %td= policy.age
-                  %td= policy.number_of_passengers
-                  %td= policy.engine_cylinder
-                  %td= policy.tons
+                  %td= policy.id
                   %td= policy.plate
                   %td= policy.issue_date
                   %td= policy.expiration_date
                   %td= policy.commercial_rate
-                  %td= policy.premium
-                  %td= policy.fosyga
-                  %td= policy.runt
                   %td= policy.total
-                  %td= link_to 'Show', policy
-                  %td= link_to 'Edit', edit_policy_path(policy)
-                  %td= link_to 'Destroy', policy, method: :delete, data: { confirm: 'Are you sure?' }
+                  %td
+                    = link_to 'Show', policy, class: "btn btn-default"
+                    = link_to 'Pay Policy', edit_policy_path(policy), class: "btn btn-success"
+                    = link_to 'Destroy', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
 
             = link_to 'New Policy', new_policy_path
