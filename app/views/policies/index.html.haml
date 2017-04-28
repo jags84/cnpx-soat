@@ -1,0 +1,54 @@
+.container
+  .row
+    .panel.panel-default
+      .panel-heading
+        My Policies
+      - if @policies.count == 0
+        .panel-body
+          You don't have any Policies, start by making a
+          = link_to 'New Policy', new_policy_path, class: 'btn btn-success'
+      -else
+        .panel-body
+          %table.table.table-bordered
+            %thead
+              %tr
+                %th Vehicle type
+                %th Vehicle sub type
+                %th Age
+                %th Number of passengers
+                %th Engine cylinder
+                %th Tons
+                %th Plate
+                %th Issue date
+                %th Expiration date
+                %th Commercial rate
+                %th Premium
+                %th Fosyga
+                %th Runt
+                %th Total
+                %th
+                %th
+                %th
+
+            %tbody
+              - @policies.each do |policy|
+                %tr
+                  %td= policy.vehicle_type
+                  %td= policy.vehicle_sub_type
+                  %td= policy.age
+                  %td= policy.number_of_passengers
+                  %td= policy.engine_cylinder
+                  %td= policy.tons
+                  %td= policy.plate
+                  %td= policy.issue_date
+                  %td= policy.expiration_date
+                  %td= policy.commercial_rate
+                  %td= policy.premium
+                  %td= policy.fosyga
+                  %td= policy.runt
+                  %td= policy.total
+                  %td= link_to 'Show', policy
+                  %td= link_to 'Edit', edit_policy_path(policy)
+                  %td= link_to 'Destroy', policy, method: :delete, data: { confirm: 'Are you sure?' }
+
+            = link_to 'New Policy', new_policy_path

@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :name,:email,:password,:password_confirmation,:email, :password, :password_confirmation, :name, :last_name, :phone, :document_type, :document_id, presence: true
-
+  has_many :policies
+  
   private
     def user_params
       params.require(:user).permit(:name,:email,:password,:password_confirmation,:email, :password, :password_confirmation, :name, :last_name, :phone, :document_type, :document_id)

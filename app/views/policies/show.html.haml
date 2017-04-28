@@ -1,0 +1,48 @@
+%p#notice= notice
+
+%p
+  %b Vehicle type:
+  = @policy.vehicle_type
+%p
+  %b Vehicle sub type:
+  = @policy.vehicle_sub_type
+%p
+  %b Age:
+  = @policy.age
+%p
+  %b Number of passengers:
+  = @policy.number_of_passengers
+%p
+  %b Engine cylinder:
+  = @policy.engine_cylinder
+%p
+  %b Tons:
+  = @policy.tons
+%p
+  %b Plate:
+  = @policy.plate
+%p
+  %b Issue date:
+  = @policy.issue_date
+%p
+  %b Expiration date:
+  = @policy.expiration_date
+%p
+  %b Commercial rate:
+  = @policy.commercial_rate
+%p
+  %b Premium:
+  = @policy.premium
+%p
+  %b Fosyga:
+  = @policy.fosyga
+%p
+  %b Runt:
+  = @policy.runt
+%p
+  %b Total:
+  = @policy.total
+
+= link_to 'Edit', edit_policy_path(@policy)
+\|
+= link_to 'Back', policies_path
