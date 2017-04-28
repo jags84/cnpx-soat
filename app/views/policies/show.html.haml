@@ -1,48 +1,76 @@
-%p#notice= notice
-
-%p
-  %b Vehicle type:
-  = @policy.vehicle_type
-%p
-  %b Vehicle sub type:
-  = @policy.vehicle_sub_type
-%p
-  %b Age:
-  = @policy.age
-%p
-  %b Number of passengers:
-  = @policy.number_of_passengers
-%p
-  %b Engine cylinder:
-  = @policy.engine_cylinder
-%p
-  %b Tons:
-  = @policy.tons
-%p
-  %b Plate:
-  = @policy.plate
-%p
-  %b Issue date:
-  = @policy.issue_date
-%p
-  %b Expiration date:
-  = @policy.expiration_date
-%p
-  %b Commercial rate:
-  = @policy.commercial_rate
-%p
-  %b Premium:
-  = @policy.premium
-%p
-  %b Fosyga:
-  = @policy.fosyga
-%p
-  %b Runt:
-  = @policy.runt
-%p
-  %b Total:
-  = @policy.total
-
-= link_to 'Edit', edit_policy_path(@policy)
-\|
-= link_to 'Back', policies_path
+.container
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h2
+          = "Policy #{@policy.id} details"
+      .panel-body
+        %p#notice= notice
+        .row
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            %h3 Vehicle type
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            %h3 Vehicle sub type
+        .row
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            = @policy.vehicle_type.name
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            = @policy.vehicle_sub_type.sub_type_description
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Age:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Number of passengers:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Engine cylinder:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Tons:
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.age
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.number_of_passengers
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.engine_cylinder
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.tons
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Plate:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Issue date:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Expiration date:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Commercial rate:
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.plate
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.issue_date
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.expiration_date
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.commercial_rate
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Premium:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Fosyga:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Runt:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Total:
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = number_to_currency(@policy.premium, precision: 2)
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = number_to_currency(@policy.fosyga, precision: 2)
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.runt
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = number_to_currency(@policy.total, precision: 2)
+        %br
+        .row
+          .col-xs-12.col-sm-6.col-md-12.col-lg-12
+            = link_to 'Back', policies_path, class: "btn btn-default"

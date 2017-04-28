@@ -2,8 +2,10 @@ class Policy < ApplicationRecord
   belongs_to :vehicle_type
   belongs_to :vehicle_sub_type
   belongs_to :user
+  after_create_commit :policy_cost
+
   # SFC Cost
-  SFC = 24.58
+  SFC = 24588.3777239709
   RUNT = 1.610
 
   def policy_cost
@@ -18,7 +20,7 @@ class Policy < ApplicationRecord
   end
 
   def self.update_status(policy_id,status)
-    
+
   end
 
   private

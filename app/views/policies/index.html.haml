@@ -13,10 +13,10 @@
             %thead
               %tr
                 %th Policy ID
-                %th Vehicle sub type
                 %th Plate
                 %th Issue date
                 %th Expiration date
+                %th Policy Status
                 %th Total
                 %th Actions
 
@@ -27,11 +27,13 @@
                   %td= policy.plate
                   %td= policy.issue_date
                   %td= policy.expiration_date
-                  %td= policy.commercial_rate
-                  %td= policy.total
+                  %td= policy.policy_status
+                  %td= number_to_currency(policy.total, precision: 2)
                   %td
                     = link_to 'Show', policy, class: "btn btn-default"
+                    \|
                     = link_to 'Pay Policy', edit_policy_path(policy), class: "btn btn-success"
-                    = link_to 'Destroy', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+                    \|
+                    = link_to 'Delete', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
 
             = link_to 'New Policy', new_policy_path
