@@ -3,6 +3,7 @@ class Policy < ApplicationRecord
   belongs_to :vehicle_sub_type
   belongs_to :user
   has_one :payment
+  accepts_nested_attributes_for :payment
   after_create_commit :policy_cost
 
   # SFC Cost
@@ -20,8 +21,9 @@ class Policy < ApplicationRecord
     self.save
   end
 
-  def self.update_status(policy_id,status)
-
+  def update_status status
+    self.policy_status = status
+    self.save
   end
 
   private

@@ -4,6 +4,7 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
+    @policy = Policy.find(params[:policy_id])
     @payments = Payment.all
   end
 
@@ -14,6 +15,7 @@ class PaymentsController < ApplicationController
 
   # GET /payments/new
   def new
+    @policy = Policy.find(params[:policy_id])
     @payment = Payment.new
   end
 
@@ -24,15 +26,14 @@ class PaymentsController < ApplicationController
   # POST /payments
   # POST /payments.json
   def create
-    @payment = Payment.new(payment_params)
-
+    @policy = Policy.find(params[:policy_id])
     respond_to do |format|
-      if @payment.save
-        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
-        format.json { render :show, status: :created, location: @payment }
+      if @policy.create_payment(payment_params)
+        format.html { redirect_to @policy, notice: 'Payment was successfully created.' }
+        format.json { render :show, status: :created, location: @policy }
       else
         format.html { render :new }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
+        format.json { render json: @policy.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +70,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:policy_id, :user_id, :number_of_quotes, :credit_card_terminal)
+      params.require(:payment).permit(:number_of_quotes, :credit_card_terminal)
     end
 end
