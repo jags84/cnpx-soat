@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :name,:email,:password,:password_confirmation,:email, :password, :password_confirmation, :name, :last_name, :phone, :document_type, :document_id, presence: true
   has_many :policies
-
+  has_many :payments
 
   private
     def user_params

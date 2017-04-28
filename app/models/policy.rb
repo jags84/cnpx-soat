@@ -2,6 +2,7 @@ class Policy < ApplicationRecord
   belongs_to :vehicle_type
   belongs_to :vehicle_sub_type
   belongs_to :user
+  has_one :payment
   after_create_commit :policy_cost
 
   # SFC Cost
