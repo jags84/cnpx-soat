@@ -10,6 +10,13 @@ class PoliciesController < ApplicationController
   # GET /policies/1
   # GET /policies/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        render pdf: "show",:layout => 'policy_pdf'
+      end
+    end
   end
 
   # GET /policies/new
@@ -25,27 +32,12 @@ class PoliciesController < ApplicationController
   # POST /policies.json
   def create
     @policy = current_user.policies.new(policy_params)
-
     respond_to do |format|
       if @policy.save
         format.html { redirect_to @policy, notice: 'Policy was successfully created.' }
         format.json { render :show, status: :created, location: @policy }
       else
         format.html { render :new }
-        format.json { render json: @policy.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /policies/1
-  # PATCH/PUT /policies/1.json
-  def update
-    respond_to do |format|
-      if @policy.update(policy_params)
-        format.html { redirect_to @policy, notice: 'Policy was successfully updated.' }
-        format.json { render :show, status: :ok, location: @policy }
-      else
-        format.html { render :edit }
         format.json { render json: @policy.errors, status: :unprocessable_entity }
       end
     end

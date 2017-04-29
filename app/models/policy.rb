@@ -8,7 +8,7 @@ class Policy < ApplicationRecord
 
   # SFC Cost
   SFC = 24588.3777239709
-  RUNT = 1.610
+  RUNT = 1610
 
   def policy_cost
     self.issue_date = DateTime.now
