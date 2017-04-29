@@ -7,7 +7,7 @@ class Policy < ApplicationRecord
   after_create :policy_cost
 
   # SFC Cost
-  SFC = 24588.3777239709
+  SFC = 24588.37 # aprox based of document Tarifas_soat_2016C004-09.pdf
   RUNT = 1610
 
   def policy_cost

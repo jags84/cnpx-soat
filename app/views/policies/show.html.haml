@@ -74,3 +74,36 @@
         .row
           .col-xs-12.col-sm-6.col-md-12.col-lg-12
             = link_to 'Atras', policies_path, class: "btn btn-default"
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h2
+          = "Detalles del Pago"
+      .panel-body
+        - if @policy.payment
+          .row
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              %h3 Fecha de Pago:
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              %h3 Numero de Cuotas:
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              %h3 Tarjeta de Credito:
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              %h3 Total:
+          .row
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = @policy.payment.created_at
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = @policy.payment.number_of_quotes
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = "**** **** **** #{@policy.payment.credit_card_terminal}"
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = number_to_currency(@policy.total, precision: 2)
+          .row
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = link_to 'Atras', policies_path, class: "btn btn-default"
+        - else
+          %p
+            Debe Pagar su Poliza, para hacerlo puede hacer click en el siguiente boton
+            = link_to 'Pagar Poliza', new_policy_payment_path(@policy), class: "btn btn-success"
+            = link_to 'Atras', policies_path, class: "btn btn-default"
