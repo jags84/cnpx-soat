@@ -1,0 +1,35 @@
+= form_for @policy do |f|
+  %fieldset
+    - if @policy.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@policy.errors.count, "error")} prohibited this policy from being saved:"
+        %ul
+          - @policy.errors.full_messages.each do |message|
+            %li= message
+
+    .form-group
+      = f.label :vehicle_type
+      %br
+      = f.collection_select :vehicle_type_id, VehicleType.order(:name), :id, :name, include_blank: true, html: {class: 'form-control'}
+    .form-group
+      = f.label :vehicle_sub_type
+      %br
+      = f.grouped_collection_select :vehicle_sub_type_id, VehicleType.order(:name), :vehicle_sub_type, :name, :id, :sub_type_description, include_blank: true, html: {class: 'form-control'}
+    .form-group
+      = f.label :age
+      = f.number_field :age, class: 'form-control'
+    .form-group
+      = f.label :number_of_passengers
+      = f.number_field :number_of_passengers, class: 'form-control'
+    .form-group
+      = f.label :engine_cylinder
+      = f.text_field :engine_cylinder, class: 'form-control'
+    .form-group
+      = f.label :tons
+      = f.text_field :tons, class: 'form-control'
+    .form-group
+      = f.label :plate
+      = f.text_field :plate, class: 'form-control'
+
+    .actions
+      = f.submit 'Save', class: "btn btn-success btn-block"

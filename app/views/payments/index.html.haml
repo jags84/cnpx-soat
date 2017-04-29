@@ -1,0 +1,23 @@
+%h1 Listing payments
+
+%table
+  %thead
+    %tr
+      %th Policy
+      %th User
+      %th Number of quotes
+      %th Credit card terminal
+      %th
+      %th
+      %th
+
+  %tbody
+    - @payments.each do |payment|
+      %tr
+        %td= payment.policy
+        %td= payment.user
+        %td= payment.number_of_quotes
+        %td= payment.credit_card_terminal
+        %td= link_to 'Show', payment
+        %td= link_to 'Edit', edit_payment_path(payment)
+        %td= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' }

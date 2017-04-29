@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428132333) do
+ActiveRecord::Schema.define(version: 20170428203009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "policy_id"
+    t.integer  "number_of_quotes"
+    t.string   "credit_card_terminal"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["policy_id"], name: "index_payments_on_policy_id", using: :btree
+  end
+
+  create_table "policies", force: :cascade do |t|
+    t.integer  "vehicle_type_id"
+    t.integer  "vehicle_sub_type_id"
+    t.integer  "user_id"
+    t.integer  "age"
+    t.integer  "number_of_passengers"
+    t.float    "engine_cylinder"
+    t.float    "tons"
+    t.string   "plate"
+    t.date     "issue_date"
+    t.date     "expiration_date"
+    t.float    "commercial_rate"
+    t.float    "premium"
+    t.float    "fosyga"
+    t.float    "runt"
+    t.float    "total"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "policy_status",        default: "unpaid"
+    t.index ["user_id"], name: "index_policies_on_user_id", using: :btree
+    t.index ["vehicle_sub_type_id"], name: "index_policies_on_vehicle_sub_type_id", using: :btree
+    t.index ["vehicle_type_id"], name: "index_policies_on_vehicle_type_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -37,4 +70,25 @@ ActiveRecord::Schema.define(version: 20170428132333) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "vehicle_sub_types", force: :cascade do |t|
+    t.integer  "vehicle_type_id"
+    t.string   "sub_type_description"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "age"
+    t.float    "commercial_rate"
+    t.index ["vehicle_type_id"], name: "index_vehicle_sub_types_on_vehicle_type_id", using: :btree
+  end
+
+  create_table "vehicle_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "payments", "policies"
+  add_foreign_key "policies", "users"
+  add_foreign_key "policies", "vehicle_sub_types"
+  add_foreign_key "policies", "vehicle_types"
+  add_foreign_key "vehicle_sub_types", "vehicle_types"
 end
