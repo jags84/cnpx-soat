@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :policies
   has_many :payments
 
+  def policies_count
+    self.policies.count
+  end
   private
     def user_params
       params.require(:user).permit(:email,:password,:password_confirmation,:name,:last_name,:phone,:document_type,:document_id)

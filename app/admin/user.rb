@@ -1,16 +1,25 @@
 ActiveAdmin.register User do
-  actions :all, :except => [:destroy, :new, :create]
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  actions :all, :except => [:destroy, :new, :create, :edit]
+  index do
+    column :id
+    column :name
+    column :email
+    column :phone
+    column :document_id
+    column :policies_count
+    actions
+  end
+
+  show do
+    attributes_table_for user do
+      row :id
+      row :name
+      row :email
+      row :phone
+      row :document_type
+      row :document_id
+      row :policies_count
+    end
+  end
 
 end
