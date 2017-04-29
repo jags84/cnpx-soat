@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
       when :user, User
         policies_path
       when :admin_user, AdminUser
-        adminc2bb4b21738ecaccca81_root_path
+        admin_root_path
       else
         super
       end
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   private
     def layout_by_resource
       if devise_controller? || controller_name=='home'
-        if controller_name=='registrations' && action_name='edit'
+        if controller_name=='registrations' && action_name=='edit'
           "application"
         else
           "home"
