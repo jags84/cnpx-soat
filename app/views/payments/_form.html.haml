@@ -1,17 +1,60 @@
 = form_for [@policy,@payment] do |f|
   %fieldset
-  - if @policy.payment.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@policy.payment.errors.count, "error")} prohibited this payment from being saved:"
-      %ul
-        - @policy.payment.errors.full_messages.each do |message|
-          %li= message
-
-  .form-group
-    = f.label :number_of_quotes
-    = f.number_field :number_of_quotes, class: 'form-control'
-  .form-group
-    = f.label :credit_card_terminal
-    = f.text_field :credit_card_terminal, class: 'form-control'
-  .actions
-    = f.submit 'Save', class: "btn btn-success btn-block"
+    - if @policy.payment.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@policy.payment.errors.count, "error")} prohibited this payment from being saved:"
+        %ul
+          - @policy.payment.errors.full_messages.each do |message|
+            %li= message
+    .form-group
+      = f.label :number_of_quotes
+      = f.number_field :number_of_quotes, class: 'form-control'
+    .form-group.hidden
+      = f.label :credit_card_terminal
+      = f.text_field :credit_card_terminal, class: 'form-control'
+    .form-group
+      %label
+        Name on Card
+      %input.form-control#card-name{name: "card-holder-name", type: "text"}
+    .form-group
+      %label
+        Card Number
+      %input.form-control#card-number{name: "card-number", type: "text"}
+    .form-group
+      %label
+        Expiration Date
+      .form-group
+        .row
+          .col-xs-3
+            %select#expiry-month.form-control.col-sm-2{:name => "expiry-month"}
+              %option Month
+              %option{:value => "01"} Jan (01)
+              %option{:value => "02"} Feb (02)
+              %option{:value => "03"} Mar (03)
+              %option{:value => "04"} Apr (04)
+              %option{:value => "05"} May (05)
+              %option{:value => "06"} June (06)
+              %option{:value => "07"} July (07)
+              %option{:value => "08"} Aug (08)
+              %option{:value => "09"} Sep (09)
+              %option{:value => "10"} Oct (10)
+              %option{:value => "11"} Nov (11)
+              %option{:value => "12"} Dec (12)
+          .col-xs-3
+            %select.form-control{:name => "expiry-year"}
+              %option{:value => "17"} 2017
+              %option{:value => "18"} 2018
+              %option{:value => "19"} 2019
+              %option{:value => "20"} 2020
+              %option{:value => "21"} 2021
+              %option{:value => "22"} 2022
+              %option{:value => "23"} 2023
+    .form-group
+      %label
+        Card CVV
+      .form-group
+        %input#cvv.form-control{:name => "cvv", :placeholder => "Security Code", :type => "text"}/
+    .row
+      .col-lg-12
+        .actions
+          = f.submit 'Pay', class: "btn btn-success btn-block"
