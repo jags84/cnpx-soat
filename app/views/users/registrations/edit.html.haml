@@ -3,9 +3,9 @@
     .col-md-6.col-md-offset-3
       .login-panel.panel.panel-default
         .panel-heading
-          %h3.panel-title Sign Up
+          %h3.panel-title Editar Usuario
         .panel-body
-          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
             %fieldset
               = devise_error_messages!
               .form-group
@@ -28,15 +28,24 @@
                 = f.text_field :document_id, class: 'form-control', autofocus: true
               .form-group
                 = f.label :clave
-                - if @minimum_password_length
-                  %em
-                    (#{@minimum_password_length} characters minimum)
+                %i (para actualizar la informacion introduzca su clave)
                 %br/
-                = f.password_field :password, autocomplete: "off", class: 'form-control'
-              .form-group
-                = f.label :confirmacion_de_clave
-                = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+                = f.password_field :current_password, autocomplete: "off", class: 'form-control'
               .actions
-                = f.submit "Registrarse", class: "btn btn-success btn-block"
-              .actions
-                = render "users/shared/links"
+                = f.submit "Actualizar", class: "btn btn-success btn-block"
+                = link_to "Atras", :back, class: "btn btn-default btn-block"
+
+              -# .field
+              -#   = f.label :password
+              -#   %i (leave blank if you don't want to change it)
+              -#   %br/
+              -#   = f.password_field :password, autocomplete: "off"
+              -#   - if @minimum_password_length
+              -#     %br/
+              -#     %em
+              -#       = @minimum_password_length
+              -#       characters minimum
+              -# .field
+              -#   = f.label :password_confirmation
+              -#   %br/
+              -#   = f.password_field :password_confirmation, autocomplete: "off"

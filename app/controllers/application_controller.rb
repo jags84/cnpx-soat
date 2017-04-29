@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_signed_in
 
   def after_sign_in_path_for(resource_or_scope)
     case resource_or_scope
@@ -12,6 +13,10 @@ class ApplicationController < ActionController::Base
       else
         super
       end
+  end
+
+  def check_signed_in
+    redirect_to policies_path if signed_in? and controller_name == 'home'
   end
 
   protected
@@ -26,7 +31,7 @@ class ApplicationController < ActionController::Base
       end
       # Update
       devise_parameter_sanitizer.permit(:account_update) do |user_params|
-        user_params.permit(:email, :password, :password_confirmation, :name, :last_name, :phone, :document_type, :document_id)
+        user_params.permit(:email, :name, :last_name, :phone, :document_type, :document_id, :password, :current_password)
       end
     end
 
