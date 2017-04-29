@@ -64,6 +64,5 @@ gem 'devise'
 # active admin
 gem 'activeadmin', github: 'activeadmin'
 # PDF
-gem 'pdfkit'
-gem 'render_anywhere'
+gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

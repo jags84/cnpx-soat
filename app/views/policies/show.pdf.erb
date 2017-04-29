@@ -1,0 +1,126 @@
+<div class="policy">
+  <h1 style="text-align:center;">Poliza - SOAT</h1>
+  <!-- Policy Information -->
+  <table style="width: 100%;text-align: left;border: 1px solid black;">
+    <h3>Datos de la Poliza</h3>
+    <thead>
+      <tr>
+        <th style="padding-bottom: 15px;border: 1px solid black;">Numero de Poliza</th>
+        <th style="padding-bottom: 15px;border: 1px solid black;">Sub Tipo de Vehiculo</th>
+        <th style="padding-bottom: 15px;border: 1px solid black;">Sub Tipo de Vehiculo</th>
+        <th style="padding-bottom: 15px;border: 1px solid black;">Placa</th>
+      </tr>
+    </thead>
+      <tbody>
+        <tr>
+          <td style="font-size: 15px"><%= @policy.id %></td>
+          <td style="font-size: 15px"><%= @policy.vehicle_type.name %></td>
+          <td style="font-size: 15px"><%= @policy.vehicle_sub_type.sub_type_description %></td>
+          <td style="font-size: 15px"><%= @policy.plate %></td>
+        </tr>
+      </tbody>
+      <thead>
+        <tr>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Edad</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Numero de Pasajeros</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Tipo de Motor</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Toneladas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-size: 15px"><%= @policy.age %></td>
+          <td style="font-size: 15px"><%= @policy.number_of_passengers %></td>
+          <td style="font-size: 15px"><%= @policy.engine_cylinder %></td>
+          <td style="font-size: 15px"><%= @policy.tons %></td>
+        </tr>
+      </tbody>
+      <thead>
+        <tr>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Dia de Emision</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Dia de Expiracion</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Taza Comercial</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-size: 15px"><%= @policy.issue_date %></td>
+          <td style="font-size: 15px"><%= @policy.expiration_date %></td>
+          <td style="font-size: 15px"><%= @policy.commercial_rate %></td>
+          <td style="font-size: 15px"><%=number_to_currency(@policy.premium, precision: 2)%></td>
+        </tr>
+      </tbody>
+  </table>
+
+  <!-- User Information -->
+  <table style="width: 100%;text-align: left;border: 1px solid black;">
+    <h3>Datos del Tomador</h3>
+    <thead>
+      <tr>
+        <th style="padding-bottom: 15px;border: 1px solid black;">Nombre</th>
+        <th style="padding-bottom: 15px;border: 1px solid black;">Apellido</th>
+        <th style="padding-bottom: 15px;border: 1px solid black;">Correo</th>
+      </tr>
+    </thead>
+      <tbody>
+        <tr>
+          <td style="font-size: 15px"><%= @policy.user.name %></td>
+          <td style="font-size: 15px"><%= @policy.user.last_name %></td>
+          <td style="font-size: 15px"><%= @policy.user.email %></td>
+        </tr>
+      </tbody>
+      <thead>
+        <tr>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Numero de Telefono</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Tipo de Documento</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Documento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-size: 15px"><%= @policy.user.phone %></td>
+          <td style="font-size: 15px"><%= @policy.user.document_type %></td>
+          <td style="font-size: 15px"><%= @policy.user.document_id %></td>
+        </tr>
+      </tbody>
+  </table>
+
+  <!-- Payment Information -->
+  <% if @policy.payment %>
+    <table style="width: 100%;text-align: left;border: 1px solid black;">
+      <h3>Datos del Pago</h3>
+      <thead>
+        <tr>
+          <th style="padding-bottom: 15px;border: 1px solid black;">Fecha de Pago</th>
+          <th style="padding-bottom: 15px;border: 1px solid black;">Numero de Cuotas</th>
+          <th style="padding-bottom: 15px;border: 1px solid black;">Tarjeta de Credito</th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr>
+            <td style="font-size: 15px"><%= @policy.payment.created_at %></td>
+            <td style="font-size: 15px"><%= @policy.payment.number_of_quotes %></td>
+            <td style="font-size: 15px"><%= "**** **** **** #{@policy.payment.credit_card_terminal}" %></td>
+          </tr>
+        </tbody>
+        <thead>
+          <tr>
+            <th style="padding-bottom: 15px;;border: 1px solid black;">Prima</th>
+            <th style="padding-bottom: 15px;;border: 1px solid black;">Fosyga</th>
+            <th style="padding-bottom: 15px;;border: 1px solid black;">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-size: 15px"><%=number_to_currency(@policy.premium, precision: 2)%></td>
+            <td style="font-size: 15px"><%= number_to_currency(@policy.fosyga, precision: 2) %></td>
+            <td style="font-size: 15px"><%= number_to_currency(@policy.total, precision: 2) %></td>
+          </tr>
+        </tbody>
+    </table>
+  <% else %>
+    <h2 style="text-align:center;">Debe pagar la Poliza</h2>
+  <% end %>
+
+</div>

@@ -27,7 +27,11 @@
                   %td= policy.plate
                   %td= policy.issue_date
                   %td= policy.expiration_date
-                  %td= policy.policy_status
+                  %td
+                    - if policy.policy_status == 'paid'
+                      Pagada
+                    - else
+                      No Pagada
                   %td= number_to_currency(policy.total, precision: 2)
                   %td
                     = link_to 'Ver Poliza', policy, class: "btn btn-default"
@@ -35,5 +39,6 @@
                       = link_to 'Pagar Poliza', new_policy_payment_path(policy), class: "btn btn-success"
                     - if policy.policy_status == 'unpaid'
                       = link_to 'Borrar Poliza', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+                    = link_to 'Descargar PDF', policy_path(policy, format: 'pdf'), class: "btn btn-primary", target: '_blanck'
 
           = link_to 'Nueva Poliza', new_policy_path, class: 'btn btn-success'
