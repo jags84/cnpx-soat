@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :policies
+  resources :policies, only: [:index,:show,:new,:create,:destroy]
   resources :policies do
     resources :payments, only: [:index,:new,:show,:create]
   end

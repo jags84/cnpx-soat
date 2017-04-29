@@ -24,10 +24,6 @@ class PoliciesController < ApplicationController
     @policy = current_user.policies.new
   end
 
-  # GET /policies/1/edit
-  def edit
-  end
-
   # POST /policies
   # POST /policies.json
   def create

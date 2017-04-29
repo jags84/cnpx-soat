@@ -1,10 +1,9 @@
 class PaymentsController < ApplicationController
-  before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  before_action :set_payment, only: [:show]
   before_action :authenticate_user!
   # GET /payments
   # GET /payments.json
   def index
-    @policy = Policy.find(params[:policy_id])
     @payments = Payment.all
   end
 
@@ -19,10 +18,6 @@ class PaymentsController < ApplicationController
     @payment = @policy.build_payment
   end
 
-  # GET /payments/1/edit
-  def edit
-  end
-
   # POST /payments
   # POST /payments.json
   def create
@@ -35,30 +30,6 @@ class PaymentsController < ApplicationController
         format.html { render :new }
         format.json { render json: @policy.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /payments/1
-  # PATCH/PUT /payments/1.json
-  def update
-    respond_to do |format|
-      if @payment.update(payment_params)
-        format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @payment }
-      else
-        format.html { render :edit }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /payments/1
-  # DELETE /payments/1.json
-  def destroy
-    @payment.destroy
-    respond_to do |format|
-      format.html { redirect_to payments_url, notice: 'Payment was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
