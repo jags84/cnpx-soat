@@ -8,7 +8,10 @@ class Payment < ApplicationRecord
     status = 'approved'
     case status
       when 'approved'
+        # Set Aproved status
         self.policy.update_status("paid")
+        # Send Email
+        UserMailerJob.perform_late self.policy
       when 'error'
         self.policy.update_status('unpaid-error')
     end
