@@ -3,14 +3,14 @@
     .panel.panel-default
       .panel-heading
         %h2
-          = "Policy #{@policy.id} details"
+          = "Detalles de la poliza: #{@policy.id}"
       .panel-body
         %p#notice= notice
         .row
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
-            %h3 Vehicle type
+            %h3 Tipo de Vehiculo
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
-            %h3 Vehicle sub type
+            %h3 Sub Tipo de Vehiculo
         .row
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
             = @policy.vehicle_type.name
@@ -18,13 +18,13 @@
             = @policy.vehicle_sub_type.sub_type_description
         .row
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Age:
+            %h3 Edad:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Number of passengers:
+            %h3 Numero de Pasajeros:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Engine cylinder:
+            %h3 Tipo de motor:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Tons:
+            %h3 Toneladas:
         .row
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
             = @policy.age
@@ -36,13 +36,13 @@
             = @policy.tons
         .row
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Plate:
+            %h3 Placa:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Issue date:
+            %h3 Dia de Emision:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Expiration date:
+            %h3 Dia de Expiracion:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Commercial rate:
+            %h3 Taza Comercial:
         .row
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
             = @policy.plate
@@ -54,7 +54,7 @@
             = @policy.commercial_rate
         .row
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Premium:
+            %h3 Prima:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
             %h3 Fosyga:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
@@ -73,4 +73,4 @@
         %br
         .row
           .col-xs-12.col-sm-6.col-md-12.col-lg-12
-            = link_to 'Back', policies_path, class: "btn btn-default"
+            = link_to 'Atras', policies_path, class: "btn btn-default"

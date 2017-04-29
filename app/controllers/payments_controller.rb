@@ -16,7 +16,7 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @policy = Policy.find(params[:policy_id])
-    @payment = Payment.new
+    @payment = @policy.build_payment
   end
 
   # GET /payments/1/edit

@@ -4,7 +4,7 @@ class Policy < ApplicationRecord
   belongs_to :user
   has_one :payment
   accepts_nested_attributes_for :payment
-  after_create_commit :policy_cost
+  after_create :policy_cost
 
   # SFC Cost
   SFC = 24588.3777239709

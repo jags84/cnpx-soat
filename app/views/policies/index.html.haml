@@ -2,7 +2,7 @@
   .row
     .panel.panel-default
       .panel-heading
-        My Policies
+        Mis polizas
       - if @policies.count == 0
         .panel-body
           You don't have any Policies, start by making a
@@ -12,13 +12,13 @@
           %table.table.table-bordered
             %thead
               %tr
-                %th Policy ID
-                %th Plate
-                %th Issue date
-                %th Expiration date
-                %th Policy Status
-                %th Total
-                %th Actions
+                %th ID de la Poliza
+                %th Placa
+                %th Dia de Emision
+                %th Dia de Expiracion
+                %th Estado de la Poliza
+                %th Prima Total
+                %th Acciones
 
             %tbody
               - @policies.each do |policy|
@@ -30,10 +30,10 @@
                   %td= policy.policy_status
                   %td= number_to_currency(policy.total, precision: 2)
                   %td
-                    = link_to 'Show', policy, class: "btn btn-default"
+                    = link_to 'Ver Poliza', policy, class: "btn btn-default"
                     - unless policy.policy_status == 'paid'
-                      = link_to 'Pay Policy', new_policy_payment_path(policy), class: "btn btn-success"
+                      = link_to 'Pagar Poliza', new_policy_payment_path(policy), class: "btn btn-success"
                     - if policy.policy_status == 'unpaid'
-                      = link_to 'Delete', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+                      = link_to 'Borrar Poliza', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
 
-          = link_to 'New Policy', new_policy_path, class: 'btn btn-success'
+          = link_to 'Nueva Poliza', new_policy_path, class: 'btn btn-success'

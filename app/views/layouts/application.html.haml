@@ -24,17 +24,17 @@
             %ul.nav.navbar-nav.navbar-right
               %li{class: "#{controller_name=='policies' ? 'active':''}"}
                 %a{:href => policies_path}
-                  Policies
+                  Polizas
               %li.dropdown
                 %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                   = current_user.name
                   %span.caret
                 %ul.dropdown-menu
                   %li
-                    %a{:href => "#"} Edit My Information
+                    %a{:href => "#"} Editar mi Informacion
                   %li.divider{role: "separator"}
                   %li
-                    = link_to 'Logout', destroy_user_session_path, :method => :delete
+                    = link_to 'Cerrar Sesion', destroy_user_session_path, :method => :delete
     = yield
     = javascript_include_tag 'application'
     = javascript_include_tag "#{controller_name}"
