@@ -22,8 +22,6 @@
         - unless current_user.nil?
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             %ul.nav.navbar-nav.navbar-right
-              %li{class: "#{controller_name=='dashboard' ? 'active':''}"}
-                %a{:href => dashboard_index_path} Dashboard
               %li{class: "#{controller_name=='policies' ? 'active':''}"}
                 %a{:href => policies_path}
                   Policies

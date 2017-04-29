@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource_or_scope)
     case resource_or_scope
       when :user, User
-        dashboard_index_path
+        policies_path
       when :admin_user, AdminUser
         adminc2bb4b21738ecaccca81_root_path
       else
