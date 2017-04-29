@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :email,:name,:last_name,:phone,:document_type,:document_id, presence: true
   has_many :policies
-  has_many :payments
 
   def policies_count
     self.policies.count
