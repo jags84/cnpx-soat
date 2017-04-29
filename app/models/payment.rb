@@ -1,6 +1,7 @@
 class Payment < ApplicationRecord
   belongs_to :policy
   after_create_commit :update_policy_status
+  validates :number_of_quotes, :credit_card_terminal, presence: true
 
   def update_policy_status
     # Lets simulate an aproved transaction from the payment service

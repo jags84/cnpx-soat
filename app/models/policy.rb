@@ -1,14 +1,15 @@
 class Policy < ApplicationRecord
+  # SFC Cost
+  SFC = 24588.37 # aprox based of document Tarifas_soat_2016C004-09.pdf
+  RUNT = 1610
+
   belongs_to :vehicle_type
   belongs_to :vehicle_sub_type
   belongs_to :user
   has_one :payment
   accepts_nested_attributes_for :payment
   after_create :policy_cost
-
-  # SFC Cost
-  SFC = 24588.37 # aprox based of document Tarifas_soat_2016C004-09.pdf
-  RUNT = 1610
+  validates :vehicle_type_id,:vehicle_sub_type_id, :user_id, :plate, presence: true
 
   def policy_cost
     self.issue_date = DateTime.now
