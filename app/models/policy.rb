@@ -9,7 +9,7 @@ class Policy < ApplicationRecord
   has_one :payment
   accepts_nested_attributes_for :payment
   after_create :policy_cost
-  validates :vehicle_type_id,:vehicle_sub_type_id, :user_id, :plate, presence: true
+  validates :vehicle_type_id,:vehicle_sub_type_id, :user_id, :plate, :age, presence: true
 
   def policy_cost
     self.issue_date = DateTime.now
