@@ -1,15 +1,18 @@
 class Policy < ApplicationRecord
   # SFC Cost
-  SFC = 24588.37 # aprox based of document Tarifas_soat_2016C004-09.pdf
-  RUNT = 1610
-
+  SFC = 24589 # aprox based on document Tarifas_soat_2016C004-09.pdf
+  RUNT = 1610 # RUNT based on document Tarifas_soat_2016C004-09.pdf
   belongs_to :vehicle_type
   belongs_to :vehicle_sub_type
   belongs_to :user
   has_one :payment
   accepts_nested_attributes_for :payment
   after_create :policy_cost
-  validates :vehicle_type_id,:vehicle_sub_type_id, :user_id, :plate, presence: true
+  validates :vehicle_type_id,:vehicle_sub_type_id, :user_id, :plate, :age, presence: true
+  validates :engine_cylinder, presence: true, if: :engine_cylinder_type?
+  validates :number_of_passengers, presence: true, if: :number_of_passengers_type?
+  validates :tons, presence: true, if: :tons_type?
+  validates :plate, uniqueness: true
 
   def policy_cost
     self.issue_date = DateTime.now
@@ -32,4 +35,19 @@ class Policy < ApplicationRecord
       params.require(:policy).permit(:vehicle_type_id, :vehicle_sub_type_id, :user_id, :age, :number_of_passengers, :engine_cylinder, :tons, :plate, :issue_date, :expiration_date, :commercial_rate, :premium, :fosyga, :runt, :total, :policy_status)
     end
 
+    def engine_cylinder_type?
+      type = self.vehicle_type.name
+      if type == "MOTOS" || type == "CAMPEROS Y CAMIONETAS" || type =="OFICIALES ESPECIALES" || type =="AUTOS FAMILIARES" || type =="VEHICULOS PARA SEIS O MAS PASAJEROS" || type == "AUTOS DE NEGOCIOS Y TAXIS"
+        return true
+      end
+      return false
+    end
+
+    def number_of_passengers_type?
+      self.vehicle_type.name == "SERVICIO PUBLICO INTERMUNICIPAL" ? true : false
+    end
+
+    def tons_type?
+      self.vehicle_type.name == "CARGA O MIXTO" ? true : false
+    end
 end
