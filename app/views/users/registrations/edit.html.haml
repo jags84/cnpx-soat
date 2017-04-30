@@ -26,7 +26,7 @@
                 .help-block.with-errors
               .form-group
                 = f.label :tipo_de_documento
-                = f.text_field :document_type, class: 'form-control', autofocus: true, required: true,'data-error': "Debe introducir su correo"
+                = f.select :document_type, [['Cédula de ciudadanía','Cédula de ciudadanía'],['Cédula de extranjería','Cédula de extranjería'],['Pasaporte','Pasaporte'],['Tarjeta de identidad','Tarjeta de identidad'],['NIT','NIT']], {include_blank: true}, {required: true, class: 'form-control', 'data-error': "Debe seleccionar un tipo de documento"}
                 .help-block.with-errors
               .form-group
                 = f.label :número_de_documento
