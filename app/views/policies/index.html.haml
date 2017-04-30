@@ -1,0 +1,44 @@
+.container
+  .row
+    .panel.panel-default
+      .panel-heading
+        Mis polizas
+      - if @policies.count == 0
+        .panel-body
+          You don't have any Policies, start by making a
+          = link_to 'New Policy', new_policy_path, class: 'btn btn-success'
+      -else
+        .panel-body
+          %table.table.table-bordered
+            %thead
+              %tr
+                %th ID de la Poliza
+                %th Placa
+                %th Dia de Emision
+                %th Dia de Expiracion
+                %th Estado de la Poliza
+                %th Prima Total
+                %th Acciones
+
+            %tbody
+              - @policies.each do |policy|
+                %tr
+                  %td= policy.id
+                  %td= policy.plate
+                  %td= policy.issue_date
+                  %td= policy.expiration_date
+                  %td
+                    - if policy.policy_status == 'paid'
+                      Pagada
+                    - else
+                      No Pagada
+                  %td= number_to_currency(policy.total, precision: 2)
+                  %td
+                    = link_to 'Ver Poliza', policy, class: "btn btn-default"
+                    - unless policy.policy_status == 'paid'
+                      = link_to 'Pagar Poliza', new_policy_payment_path(policy), class: "btn btn-success"
+                    - if policy.policy_status == 'unpaid'
+                      = link_to 'Borrar Poliza', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+                    = link_to 'Descargar PDF', policy_path(policy, format: 'pdf'), class: "btn btn-primary", target: '_blanck'
+
+          = link_to 'Nueva Poliza', new_policy_path, class: 'btn btn-success'

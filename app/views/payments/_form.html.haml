@@ -1,0 +1,68 @@
+= form_for [@policy,@payment], html: {role: "form", 'data-toggle': "validator"} do |f|
+  %fieldset
+    - if @payment.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@payment.errors.count, "error")} prohibited this payment from being saved:"
+        %ul
+          - @payment.errors.full_messages.each do |message|
+            %li= message
+    .form-group
+      = f.label :numero_de_cuotas
+      = f.number_field :number_of_quotes, class: 'form-control', required: true, 'data-error': "Debe introducir el numero de cuotas"
+      .help-block.with-errors
+    .form-group.hidden
+      = f.text_field :credit_card_terminal, class: 'form-control'
+    .form-group
+      %label
+        Nombre en la tarjeta
+      %input.form-control#card-name{name: "card-holder-name", type: "text", required: true ,'data-error': "Debe introducir el Nombre de la tarjeta"}
+      .help-block.with-errors
+    .form-group
+      %label
+        Numero de tarjeta
+      %input.form-control#card-number{name: "card-number", type: "text", required: true ,'data-error': "Debe introducir el Numero de la tarjeta"}
+      .help-block.with-errors
+    .form-group
+      %label
+        Fecha de Expiracion
+      .form-group
+        .row
+          .col-xs-3
+            %select#expiry-month.form-control.col-sm-2{:name => "expiry-month", required: true ,'data-error': "Debe seleccionar el mes de vencimiento"}
+              %option Mes
+              %option{:value => "01"} Jan (01)
+              %option{:value => "02"} Feb (02)
+              %option{:value => "03"} Mar (03)
+              %option{:value => "04"} Apr (04)
+              %option{:value => "05"} May (05)
+              %option{:value => "06"} June (06)
+              %option{:value => "07"} July (07)
+              %option{:value => "08"} Aug (08)
+              %option{:value => "09"} Sep (09)
+              %option{:value => "10"} Oct (10)
+              %option{:value => "11"} Nov (11)
+              %option{:value => "12"} Dec (12)
+            .help-block.with-errors
+          .col-xs-3
+            %select.form-control{:name => "expiry-year", required: true ,'data-error': "Debe seleccionar el año de vencimiento"}
+              %option Año
+              %option{:value => "17"} 2017
+              %option{:value => "18"} 2018
+              %option{:value => "19"} 2019
+              %option{:value => "20"} 2020
+              %option{:value => "21"} 2021
+              %option{:value => "22"} 2022
+              %option{:value => "23"} 2023
+            .help-block.with-errors
+    .form-group
+      %label
+        CVV
+      .form-group
+        %input#cvv.form-control{:name => "cvv", :placeholder => "Security Code", :type => "text", required: true ,'data-error': "Debe introducir el Numero CVV de la tarjeta"}
+    .row
+      .col-lg-12
+        .actions
+          .col-lg-6
+            = f.submit 'Pagar', class: "btn btn-success btn-block"
+          .col-lg-6
+            = link_to 'Atras', :back , class: "btn btn-default btn-block"

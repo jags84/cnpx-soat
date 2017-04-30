@@ -1,0 +1,109 @@
+.container
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h2
+          = "Detalles de la poliza: #{@policy.id}"
+      .panel-body
+        %p#notice= notice
+        .row
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            %h3 Tipo de Vehiculo
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            %h3 Sub Tipo de Vehiculo
+        .row
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            = @policy.vehicle_type.name
+          .col-xs-12.col-sm-6.col-md-6.col-lg-6
+            = @policy.vehicle_sub_type.sub_type_description
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Edad:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Numero de Pasajeros:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Tipo de motor:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Toneladas:
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.age
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.number_of_passengers
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.engine_cylinder
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.tons
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Placa:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Dia de Emision:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Dia de Expiracion:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Taza Comercial:
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.plate
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.issue_date
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.expiration_date
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.commercial_rate
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Prima:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Fosyga:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Runt:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Total:
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = number_to_currency(@policy.premium, precision: 2)
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = number_to_currency(@policy.fosyga, precision: 2)
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.runt
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = number_to_currency(@policy.total, precision: 2)
+        %br
+        .row
+          .col-xs-12.col-sm-6.col-md-12.col-lg-12
+            = link_to 'Atras', policies_path, class: "btn btn-default"
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h2
+          = "Detalles del Pago"
+      .panel-body
+        - if @policy.payment
+          .row
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              %h3 Fecha de Pago:
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              %h3 Numero de Cuotas:
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              %h3 Tarjeta de Credito:
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              %h3 Total:
+          .row
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = @policy.payment.created_at
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = @policy.payment.number_of_quotes
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = "**** **** **** #{@policy.payment.credit_card_terminal}"
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = number_to_currency(@policy.total, precision: 2)
+          .row
+            .col-xs-12.col-sm-6.col-md-3.col-lg-3
+              = link_to 'Atras', policies_path, class: "btn btn-default"
+        - else
+          %p
+            Debe Pagar su Poliza, para hacerlo puede hacer click en el siguiente boton
+            = link_to 'Pagar Poliza', new_policy_payment_path(@policy), class: "btn btn-success"
+            = link_to 'Atras', policies_path, class: "btn btn-default"
