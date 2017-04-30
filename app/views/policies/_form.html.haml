@@ -25,10 +25,10 @@
       = f.number_field :number_of_passengers, class: 'form-control', disabled: true
     .form-group
       = f.label :cilindrada
-      = f.text_field :engine_cylinder, class: 'form-control', disabled: true
+      = f.number_field :engine_cylinder, class: 'form-control', disabled: true
     .form-group
       = f.label :toneladas
-      = f.text_field :tons, class: 'form-control', disabled: true
+      = f.number_field :tons, class: 'form-control', disabled: true
     .form-group
       = f.label :placa
       = f.text_field :plate, class: 'form-control',required: true,'data-error': "Debe introducir la placa de su vehículo"
