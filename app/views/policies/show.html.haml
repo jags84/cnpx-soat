@@ -3,7 +3,7 @@
     .panel.panel-default
       .panel-heading
         %h2
-          = "Detalles de la poliza: #{@policy.id}"
+          = "Detalles de la póliza: #{@policy.id}"
       .panel-body
         %p#notice= notice
         .row
@@ -38,9 +38,9 @@
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
             %h3 Placa:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Dia de Emision:
+            %h3 Día de Emisión:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Dia de Expiracion:
+            %h3 Día de Expiración:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
             %h3 Taza Comercial:
         .row
@@ -122,6 +122,6 @@
               = link_to 'Atras', policies_path, class: "btn btn-default"
         - else
           %p
-            Debe Pagar su Poliza, para hacerlo puede hacer click en el siguiente boton
-            = link_to 'Pagar Poliza', new_policy_payment_path(@policy), class: "btn btn-success"
+            Debe Pagar su Póliza, para hacerlo puede hacer click en el siguiente boton
+            = link_to 'Pagar Póliza', new_policy_payment_path(@policy), class: "btn btn-success"
             = link_to 'Atras', policies_path, class: "btn btn-default"

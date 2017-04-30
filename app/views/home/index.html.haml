@@ -3,7 +3,7 @@
     .col-md-6.col-md-offset-3
       .login-panel.panel.panel-default
         .panel-heading
-          %h3.panel-title Acceder
+          %h3.panel-title Iniciar Sesión
         .panel-body
           = form_for(:user, :url => session_path(:user),html: {role: "form", 'data-toggle': "validator"}) do |f|
             %fieldset
@@ -16,7 +16,7 @@
                 = f.password_field :password, class: 'form-control', required: true,'data-error': "Debe introducir su clave"
                 .help-block.with-errors
               .actions
-                = f.submit 'Iniciar Sesion', class: "btn btn-success btn-block"
-              = link_to "Registrate", new_user_registration_path
+                = f.submit 'Iniciar Sesión', class: "btn btn-success btn-block"
+              = link_to "Regístrate", new_user_registration_path
               %br
-              = link_to "Olvido su contraseña?", new_password_path(:user)
+              -# = link_to "¿Olvidó su clave?", new_password_path(:user)
