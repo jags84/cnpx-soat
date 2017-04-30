@@ -2,21 +2,21 @@
   .row
     .panel.panel-default
       .panel-heading
-        Mis polizas
+        Mis pólizas
       - if @policies.count == 0
         .panel-body
-          Aun no tienes polizas, empieza creando una
-          = link_to 'Nueva Poliza', new_policy_path, class: 'btn btn-success'
+          Aun no tienes pólizas, empieza creando una
+          = link_to 'Nueva Póliza', new_policy_path, class: 'btn btn-success'
       -else
         .panel-body
           %table.table.table-bordered
             %thead
               %tr
-                %th ID de la Poliza
+                %th ID de la Póliza
                 %th Placa
-                %th Dia de Emision
-                %th Dia de Expiracion
-                %th Estado de la Poliza
+                %th Día de Emisión
+                %th Día de Expiración
+                %th Estado de la Póliza
                 %th Prima Total
                 %th Acciones
 
@@ -34,11 +34,34 @@
                       No Pagada
                   %td= number_to_currency(policy.total, precision: 2)
                   %td
-                    = link_to 'Ver Poliza', policy, class: "btn btn-default"
+                    = link_to 'Ver Póliza', policy, class: "btn btn-default"
                     - unless policy.policy_status == 'paid'
-                      = link_to 'Pagar Poliza', new_policy_payment_path(policy), class: "btn btn-success"
+                      = link_to 'Pagar Póliza', new_policy_payment_path(policy), class: "btn btn-success"
                     - if policy.policy_status == 'unpaid'
-                      = link_to 'Borrar Poliza', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+                      = link_to 'Borrar Póliza', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
                     = link_to 'Descargar PDF', policy_path(policy, format: 'pdf'), class: "btn btn-primary", target: '_blanck'
 
-          = link_to 'Nueva Poliza', new_policy_path, class: 'btn btn-success'
+
+          %button.btn.btn-success{"data-target" => "#plateModal", "data-toggle" => "modal", :type => "button"}
+            Nueva Póliza
+
+-# Modal
+#plateModal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Verificar Placa del Vehiculo
+      .modal-body
+        .form-group
+          %label
+            Número de Placa
+          %input.form-control#plate-number{name: "plate-number", type: "text", required: true ,'data-error': "Debe introducir la placa"}
+          .help-block.with-errors
+        %p.validate-error.hidden
+          La placa ya se encuentra registrada en el sistema, por favor verifique
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cerrar
+        %button.btn.btn-primary#plate_validate_button{:type => "button"} Verificar
+        = link_to 'Nueva Póliza', new_policy_path, class: 'btn btn-success disabled hidden', id: "new_policy_button"

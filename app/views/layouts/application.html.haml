@@ -6,7 +6,6 @@
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all'
     = stylesheet_link_tag "#{controller_name}", :media => "all"
-
   %body
     %nav.navbar.navbar-default
       .container-fluid
@@ -24,14 +23,14 @@
             %ul.nav.navbar-nav.navbar-right
               %li{class: "#{controller_name=='policies' ? 'active':''}"}
                 %a{:href => policies_path}
-                  Polizas
+                  Pólizas
               %li.dropdown
                 %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                   = current_user.name
                   %span.caret
                 %ul.dropdown-menu
                   %li
-                    %a{:href => edit_user_registration_path} Editar mi Informacion
+                    %a{:href => edit_user_registration_path} Editar mi Información
                   %li.divider{role: "separator"}
                   %li
                     = link_to 'Cerrar Sesion', destroy_user_session_path, :method => :delete

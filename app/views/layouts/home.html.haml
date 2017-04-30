@@ -6,7 +6,6 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = stylesheet_link_tag "#{controller_name}", :media => "all"
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     %nav.navbar.navbar-default
       .container-fluid
@@ -20,4 +19,5 @@
           %a.navbar-brand{:href => root_path} SOAT
 
     = yield
+    = javascript_include_tag 'application'
     = javascript_include_tag "#{controller_name}"
