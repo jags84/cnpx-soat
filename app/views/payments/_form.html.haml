@@ -15,54 +15,59 @@
     .form-group
       %label
         Nombre en la tarjeta
-      %input.form-control#card-name{name: "card-holder-name", type: "text", required: true ,'data-error': "Debe introducir el Nombre de la tarjeta"}
+      %input.form-control#card-name{name: "card-holder-name", type: "text", required: true ,"data-error": "Debe introducir el Nombre de la tarjeta", "pattern": "^[a-zA-Z ]*$"}
       .help-block.with-errors
     .form-group
       %label
         Número de tarjeta
-      %input.form-control#card-number{name: "card-number", type: "text", required: true ,'data-error': "Debe introducir el número de la tarjeta"}
+      %input.form-control#card-number{name: "card-number", type: "number", required: true ,'data-error': "Debe introducir el número de la tarjeta", "pattern": "^[0-9]*$","data-minlength": "13"}
       .help-block.with-errors
     .form-group
       %label
-        Fecha de Expiracion
+        Fecha de Expiración
       .form-group
         .row
           .col-xs-3
             %select#expiry-month.form-control.col-sm-2{:name => "expiry-month", required: true ,'data-error': "Debe seleccionar el mes de vencimiento"}
-              %option Mes
-              %option{:value => "01"} Jan (01)
-              %option{:value => "02"} Feb (02)
-              %option{:value => "03"} Mar (03)
-              %option{:value => "04"} Apr (04)
-              %option{:value => "05"} May (05)
-              %option{:value => "06"} June (06)
-              %option{:value => "07"} July (07)
-              %option{:value => "08"} Aug (08)
-              %option{:value => "09"} Sep (09)
+              %option
+              %option{:value => "1"} Jan (01)
+              %option{:value => "2"} Feb (02)
+              %option{:value => "3"} Mar (03)
+              %option{:value => "4"} Apr (04)
+              %option{:value => "5"} May (05)
+              %option{:value => "6"} June (06)
+              %option{:value => "7"} July (07)
+              %option{:value => "8"} Aug (08)
+              %option{:value => "9"} Sep (09)
               %option{:value => "10"} Oct (10)
               %option{:value => "11"} Nov (11)
               %option{:value => "12"} Dec (12)
             .help-block.with-errors
           .col-xs-3
-            %select.form-control{:name => "expiry-year", required: true ,'data-error': "Debe seleccionar el año de vencimiento"}
-              %option Año
-              %option{:value => "17"} 2017
-              %option{:value => "18"} 2018
-              %option{:value => "19"} 2019
-              %option{:value => "20"} 2020
-              %option{:value => "21"} 2021
-              %option{:value => "22"} 2022
-              %option{:value => "23"} 2023
+            %select.form-control#cc_year{:name => "expiry-year", required: true ,'data-error': "Debe seleccionar el año de vencimiento"}
+              %option 
+              %option{:value => "2017"} 2017
+              %option{:value => "2018"} 2018
+              %option{:value => "2019"} 2019
+              %option{:value => "2020"} 2020
+              %option{:value => "2021"} 2021
+              %option{:value => "2022"} 2022
+              %option{:value => "2023"} 2023
+              %option{:value => "2024"} 2024
+              %option{:value => "2025"} 2025
+              %option{:value => "2026"} 2026
+              %option{:value => "2027"} 2027
             .help-block.with-errors
     .form-group
       %label
         CVV
       .form-group
-        %input#cvv.form-control{:name => "cvv", :placeholder => "Security Code", :type => "text", required: true ,'data-error': "Debe introducir el Numero CVV de la tarjeta"}
+        %input#cvv.form-control{name: "cvv",type: "password" ,placeholder: "Código de Seguridad", required: true ,'data-error': "Debe introducir el Numero CVV de la tarjeta","data-minlength": "3", maxlength:"4"}
+        .help-block.with-errors
     .row
       .col-lg-12
         .actions
           .col-lg-6
-            = f.submit 'Pagar', class: "btn btn-success btn-block"
+            = f.submit 'Pagar', class: "btn btn-success btn-block", id:'pay-button'
           .col-lg-6
             = link_to 'Atrás', :back , class: "btn btn-default btn-block"
