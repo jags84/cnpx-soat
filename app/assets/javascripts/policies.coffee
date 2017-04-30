@@ -11,6 +11,8 @@ $ ->
   # Disable new policy button
   $('#plate-number').keyup ->
     disable_new_policy_button()
+  $('#policy_plate').keyup ->
+    $('#policy_plate').val($('#policy_plate').val().toLocaleUpperCase())
 
 create_dropdown = () ->
   vehicle_sub_type = undefined
@@ -66,7 +68,7 @@ set_disabled_tons_field = (status) ->
 
 verify_plate_number = () ->
   $('#plate_validate_button').on 'click', ->
-    plate = $('#plate-number').val()
+    plate = $('#plate-number').val().toLocaleUpperCase()
     $.ajax
       url: "/api/plates/"+plate+".json"
       type: "GET"
@@ -78,10 +80,7 @@ verify_plate_number = () ->
         $('#plate_validate_button').button('reset')
       success: (response) ->
         if response.status == 'unregistered'
-          $('.validate-error').addClass('hidden')
-          $('#new_policy_button').removeClass('hidden')
-          $('#new_policy_button').removeClass('disabled')
-          $('#new_policy_button').attr('disabled',false)
+          window.location.href = "/policies/new";
         else
           $('.validate-error').removeClass('hidden')
           disable_new_policy_button()
