@@ -1,6 +1,6 @@
 class VehicleSubType < ApplicationRecord
   belongs_to :vehicle_type
-
+  validates :sub_type_description , :commercial_rate, presence: true
   def description
     "#{self.sub_type_description} - #{self.age}"
   end

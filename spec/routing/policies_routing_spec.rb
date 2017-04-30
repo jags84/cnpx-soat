@@ -15,20 +15,8 @@ RSpec.describe PoliciesController, type: :routing do
       expect(:get => "/policies/1").to route_to("policies#show", :id => "1")
     end
 
-    it "routes to #edit" do
-      expect(:get => "/policies/1/edit").to route_to("policies#edit", :id => "1")
-    end
-
     it "routes to #create" do
       expect(:post => "/policies").to route_to("policies#create")
-    end
-
-    it "routes to #update via PUT" do
-      expect(:put => "/policies/1").to route_to("policies#update", :id => "1")
-    end
-
-    it "routes to #update via PATCH" do
-      expect(:patch => "/policies/1").to route_to("policies#update", :id => "1")
     end
 
     it "routes to #destroy" do
