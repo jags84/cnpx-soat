@@ -6,7 +6,8 @@
       - if @policies.count == 0
         .panel-body
           Aun no tienes pólizas, empieza creando una
-          = link_to 'Nueva Póliza', new_policy_path, class: 'btn btn-success'
+          %button.btn.btn-success{"data-target" => "#plateModal", "data-toggle" => "modal", :type => "button"}
+            Nueva Póliza
       -else
         .panel-body
           %table.table.table-bordered
