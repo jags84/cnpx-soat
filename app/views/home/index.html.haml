@@ -5,14 +5,16 @@
         .panel-heading
           %h3.panel-title Acceder
         .panel-body
-          = form_for(:user, :url => session_path(:user)) do |f|
+          = form_for(:user, :url => session_path(:user),html: {role: "form", 'data-toggle': "validator"}) do |f|
             %fieldset
               .form-group
                 = f.label :correo
-                = f.email_field :email, class: 'form-control'
+                = f.email_field :email, class: 'form-control', required: true,'data-error': "Debe introducir su correo"
+                .help-block.with-errors
               .form-group
                 = f.label :clave
-                = f.password_field :password, class: 'form-control'
+                = f.password_field :password, class: 'form-control', required: true,'data-error': "Debe introducir su clave"
+                .help-block.with-errors
               .actions
                 = f.submit 'Iniciar Sesion', class: "btn btn-success btn-block"
               = link_to "Registrate", new_user_registration_path
