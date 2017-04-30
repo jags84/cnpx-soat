@@ -58,7 +58,7 @@ VehicleSubType.create!(vehicle_type: v, sub_type_description: "More than 2500 c.
 VehicleSubType.create!(vehicle_type: v, sub_type_description: "More than 2500 c.c.", age: "10 years or more", commercial_rate: 17.49)
 # BUSES Y BUSETAS DE SERVICIO PUBLICO URBANO
 v = VehicleType.create!(name: "BUSES Y BUSETAS DE SERVICIO PUBLICO URBANO")
-VehicleSubType.create!(vehicle_type: v, commercial_rate: 21.81)
+VehicleSubType.create!(vehicle_type: v, sub_type_description: "Buses y Busetas", commercial_rate: 21.81)
 # SERVICIO PUBLICO INTERMUNICIPAL
 v = VehicleType.create!(name: "SERVICIO PUBLICO INTERMUNICIPAL")
 VehicleSubType.create!(vehicle_type: v, sub_type_description: "Less than 10 Passenger", commercial_rate: 22.01)
