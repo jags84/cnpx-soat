@@ -4,12 +4,22 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @policy = Policy.find(params[:policy_id])
-    @payment = @policy.build_payment
+    if @policy.payment.nil?
+      @payment = @policy.build_payment
+    else
+      redirect_to @policy
+    end
   end
 
   # POST /payments
   # POST /payments.json
   def create
+    # Verify if Policy have a payment
+    @policy = Policy.find(params[:policy_id])
+    unless @policy.payment.nil?
+      redirect_to @policy
+    end
+    # Continue with creation
     @payment = Policy.find(params[:policy_id]).build_payment(payment_params)
     respond_to do |format|
       if @payment.save
