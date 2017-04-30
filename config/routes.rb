@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-
+  # API
+  namespace :api do
+    resources :plates, only: [:show], param: :plate_number
+  end
   resources :policies, only: [:index,:show,:new,:create,:destroy]
   resources :policies do
     resources :payments, only: [:new,:create]
