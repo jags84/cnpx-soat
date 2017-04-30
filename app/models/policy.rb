@@ -2,6 +2,11 @@ class Policy < ApplicationRecord
   # SFC Cost
   SFC = 24589 # aprox based on document Tarifas_soat_2016C004-09.pdf
   RUNT = 1610 # RUNT based on document Tarifas_soat_2016C004-09.pdf
+  MUERTES_Y_GASTOS_FUNERARIOS = '750 SMLDV' # based on document SOAT Prueba tecnica 2017.pdf
+  GASTOS_MEDICOS = '800 SMLDV' # based on document SOAT Prueba tecnica 2017.pdf
+  INCAPACIDAD_PERMANENTE = '180 SMLDV' # based on document SOAT Prueba tecnica 2017.pdf
+  GASTOS_DE_TRANSPORTE = '10 SMLDV' # based on document SOAT Prueba tecnica 2017.pdf
+
   belongs_to :vehicle_type
   belongs_to :vehicle_sub_type
   belongs_to :user
@@ -28,6 +33,15 @@ class Policy < ApplicationRecord
   def update_status status
     self.policy_status = status
     self.save
+  end
+
+  def get_coverage
+    {
+      mgf: MUERTES_Y_GASTOS_FUNERARIOS,
+      gm: GASTOS_MEDICOS,
+      ip: INCAPACIDAD_PERMANENTE,
+      gt: GASTOS_DE_TRANSPORTE,
+    }
   end
 
   private

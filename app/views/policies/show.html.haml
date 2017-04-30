@@ -70,6 +70,24 @@
             = @policy.runt
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
             = number_to_currency(@policy.total, precision: 2)
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Muertes y Gastos Funerarios:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Gastos Medicos:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Incapacidad Permanente:
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            %h3 Gastos de Transporte:
+        .row
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.get_coverage[:mgf]
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.get_coverage[:gm]
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.get_coverage[:ip]
+          .col-xs-12.col-sm-6.col-md-3.col-lg-3
+            = @policy.get_coverage[:gt]
         %br
         .row
           .col-xs-12.col-sm-6.col-md-12.col-lg-12

@@ -51,6 +51,22 @@
           <td style="font-size: 15px"><%=number_to_currency(@policy.premium, precision: 2)%></td>
         </tr>
       </tbody>
+      <thead>
+        <tr>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Muertes y Gastos Funerarios</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Gastos Medicos</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Incapacidad Permanente</th>
+          <th style="padding-bottom: 15px;;border: 1px solid black;">Gastos de Transporte</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-size: 15px"><%= @policy.get_coverage[:mgf] %></td>
+          <td style="font-size: 15px"><%= @policy.get_coverage[:gm] %></td>
+          <td style="font-size: 15px"><%= @policy.get_coverage[:ip] %></td>
+          <td style="font-size: 15px"><%= @policy.get_coverage[:gt]%></td>
+        </tr>
+      </tbody>
   </table>
 
   <!-- User Information -->
