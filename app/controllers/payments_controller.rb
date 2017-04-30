@@ -10,14 +10,14 @@ class PaymentsController < ApplicationController
   # POST /payments
   # POST /payments.json
   def create
-    @policy = Policy.find(params[:policy_id])
+    @payment = Policy.find(params[:policy_id]).build_payment(payment_params)
     respond_to do |format|
-      if @policy.create_payment(payment_params)
-        format.html { redirect_to @policy, notice: 'Payment was successfully created.' }
-        format.json { render :show, status: :created, location: @policy }
+      if @payment.save
+        format.html { redirect_to @payment.policy, notice: 'Payment was successfully created.' }
+        format.json { render :show, status: :created, location: @payment.policy }
       else
         format.html { render :new }
-        format.json { render json: @policy.errors, status: :unprocessable_entity }
+        format.json { render json: @payment.errors, status: :unprocessable_entity }
       end
     end
   end
