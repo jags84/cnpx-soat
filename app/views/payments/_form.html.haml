@@ -7,8 +7,8 @@
           - @payment.errors.full_messages.each do |message|
             %li= message
     .form-group
-      = f.label :numero_de_cuotas
-      = f.number_field :number_of_quotes, class: 'form-control', required: true, 'data-error': "Debe introducir el numero de cuotas"
+      = f.label :número_de_cuotas
+      = f.number_field :number_of_quotes, class: 'form-control', required: true, 'data-error': "Debe introducir el número de cuotas"
       .help-block.with-errors
     .form-group.hidden
       = f.text_field :credit_card_terminal, class: 'form-control'
@@ -19,8 +19,8 @@
       .help-block.with-errors
     .form-group
       %label
-        Numero de tarjeta
-      %input.form-control#card-number{name: "card-number", type: "text", required: true ,'data-error': "Debe introducir el Numero de la tarjeta"}
+        Número de tarjeta
+      %input.form-control#card-number{name: "card-number", type: "text", required: true ,'data-error': "Debe introducir el número de la tarjeta"}
       .help-block.with-errors
     .form-group
       %label
@@ -65,4 +65,4 @@
           .col-lg-6
             = f.submit 'Pagar', class: "btn btn-success btn-block"
           .col-lg-6
-            = link_to 'Atras', :back , class: "btn btn-default btn-block"
+            = link_to 'Atrás', :back , class: "btn btn-default btn-block"

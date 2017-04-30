@@ -8,20 +8,20 @@
             %li= message
 
     .form-group
-      = f.label :tipo_de_vehiculo
+      = f.label :tipo_de_vehículo
       %br
-      = f.collection_select :vehicle_type_id, VehicleType.order(:name), :id, :name, {include_blank: true}, {required: true, class: 'form-control', 'data-error': "Debe seleccionar un tipo de vehiculo"}
+      = f.collection_select :vehicle_type_id, VehicleType.order(:name), :id, :name, {include_blank: true}, {required: true, class: 'form-control', 'data-error': "Debe seleccionar un tipo de vehículo"}
       .help-block.with-errors
     .form-group
-      = f.label :sub_tipo_de_vehiculo
+      = f.label :sub_tipo_de_vehículo
       %br
       = f.grouped_collection_select :vehicle_sub_type_id, VehicleType.order(:name), :vehicle_sub_type, :name, :id, :description,{include_blank: true}, {class: 'form-control'}
     .form-group
       = f.label :edad
-      = f.number_field :age, class: 'form-control',required: true,'data-error': "Debe introducir la edad de su vehiculo"
+      = f.number_field :age, class: 'form-control',required: true,'data-error': "Debe introducir la edad de su vehículo"
       .help-block.with-errors
     .form-group
-      = f.label :numero_de_pasajeros
+      = f.label :número_de_pasajeros
       = f.number_field :number_of_passengers, class: 'form-control', disabled: true
     .form-group
       = f.label :cilindrada
@@ -31,11 +31,11 @@
       = f.text_field :tons, class: 'form-control', disabled: true
     .form-group
       = f.label :placa
-      = f.text_field :plate, class: 'form-control',required: true,'data-error': "Debe introducir la placa de su vehiculo"
+      = f.text_field :plate, class: 'form-control',required: true,'data-error': "Debe introducir la placa de su vehículo"
       .help-block.with-errors
     .actions
       .row
         .col-lg-6
           = f.submit 'Generar', class: "btn btn-success btn-block"
         .col-lg-6
-          = link_to 'Atras', :back , class: "btn btn-default btn-block"
+          = link_to 'Atrás', :back , class: "btn btn-default btn-block"

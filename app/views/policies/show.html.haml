@@ -5,12 +5,11 @@
         %h2
           = "Detalles de la póliza: #{@policy.id}"
       .panel-body
-        %p#notice= notice
         .row
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
-            %h3 Tipo de Vehiculo
+            %h3 Tipo de vehículo
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
-            %h3 Sub Tipo de Vehiculo
+            %h3 Sub tipo de vehículo
         .row
           .col-xs-12.col-sm-6.col-md-6.col-lg-6
             = @policy.vehicle_type.name
@@ -20,7 +19,7 @@
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
             %h3 Edad:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
-            %h3 Numero de Pasajeros:
+            %h3 Número de Pasajeros:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
             %h3 Tipo de motor:
           .col-xs-12.col-sm-6.col-md-3.col-lg-3
@@ -91,7 +90,7 @@
         %br
         .row
           .col-xs-12.col-sm-6.col-md-12.col-lg-12
-            = link_to 'Atras', policies_path, class: "btn btn-default"
+            = link_to 'Atrás', policies_path, class: "btn btn-default"
   .row
     .panel.panel-default
       .panel-heading
@@ -103,9 +102,9 @@
             .col-xs-12.col-sm-6.col-md-3.col-lg-3
               %h3 Fecha de Pago:
             .col-xs-12.col-sm-6.col-md-3.col-lg-3
-              %h3 Numero de Cuotas:
+              %h3 Número de Cuotas:
             .col-xs-12.col-sm-6.col-md-3.col-lg-3
-              %h3 Tarjeta de Credito:
+              %h3 Tarjeta de Crédito:
             .col-xs-12.col-sm-6.col-md-3.col-lg-3
               %h3 Total:
           .row
@@ -119,9 +118,9 @@
               = number_to_currency(@policy.total, precision: 2)
           .row
             .col-xs-12.col-sm-6.col-md-3.col-lg-3
-              = link_to 'Atras', policies_path, class: "btn btn-default"
+              = link_to 'Atrás', policies_path, class: "btn btn-default"
         - else
           %p
             Debe Pagar su Póliza, para hacerlo puede hacer click en el siguiente boton
             = link_to 'Pagar Póliza', new_policy_payment_path(@policy), class: "btn btn-success"
-            = link_to 'Atras', policies_path, class: "btn btn-default"
+            = link_to 'Atrás', policies_path, class: "btn btn-default"
