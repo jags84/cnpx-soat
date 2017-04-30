@@ -11,7 +11,7 @@ The task is to create a simple web application to buy vehicles insured policies 
 5. A user can delete an unpaid policy
 6. To go to admin site go to /admin using user: admin@example.com password: password
 7. You can't be in the admin and the application in the same moment using same browser ( you can't have 2 sessions in the same app )
-
+8. UserMailer needs a SMTP config to send emails, add SMTP configuration in your enviroment.rb file
 ## Requirements:
 ```
 Ruby 2.4.0
