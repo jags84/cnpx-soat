@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 # Clear DB
+Payment.delete_all
+Policy.delete_all
 VehicleSubType.delete_all
 VehicleType.delete_all
 AdminUser.delete_all
-Payment.delete_all
-Policy.delete_all
 
 # MOTOS
 v = VehicleType.create!(name: "MOTOS")
