@@ -39,10 +39,8 @@
                     - unless policy.policy_status == 'paid'
                       = link_to 'Pagar Póliza', new_policy_payment_path(policy), class: "btn btn-success"
                     - if policy.policy_status == 'unpaid'
-                      = link_to 'Borrar Póliza', policy, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+                      = link_to 'Borrar Póliza', policy, method: :delete, data: { confirm: '\u00bf Est\u00e1 seguro que desea borrar la P\u00faliza?' }, class: "btn btn-danger"
                     = link_to 'Descargar PDF', policy_path(policy, format: 'pdf'), class: "btn btn-primary", target: '_blanck'
-
-
           %button.btn.btn-success{"data-target" => "#plateModal", "data-toggle" => "modal", :type => "button"}
             Nueva Póliza
 
