@@ -5,47 +5,39 @@
         .panel-heading
           %h3.panel-title Editar Usuario
         .panel-body
-          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put,role: "form", 'data-toggle': "validator" }) do |f|
             %fieldset
               = devise_error_messages!
               .form-group
                 = f.label :email
-                = f.email_field :email, class: 'form-control', autofocus: true
+                = f.email_field :email, class: 'form-control', autofocus: true, required: true,'data-error': "Debe introducir su correo"
+                .help-block.with-errors
               .form-group
                 = f.label :nombre
-                = f.text_field :name, class: 'form-control', autofocus: true
+                = f.text_field :name, class: 'form-control', autofocus: true, required: true,'data-error': "Debe introducir su correo"
+                .help-block.with-errors
               .form-group
                 = f.label :apellido
-                = f.text_field :last_name, class: 'form-control', autofocus: true
+                = f.text_field :last_name, class: 'form-control', autofocus: true, required: true,'data-error': "Debe introducir su correo"
+                .help-block.with-errors
               .form-group
                 = f.label :telefono
-                = f.text_field :phone, class: 'form-control', autofocus: true
+                = f.text_field :phone, class: 'form-control', autofocus: true, required: true,'data-error': "Debe introducir su correo"
+                .help-block.with-errors
               .form-group
                 = f.label :tipo_de_documento
-                = f.text_field :document_type, class: 'form-control', autofocus: true
+                = f.text_field :document_type, class: 'form-control', autofocus: true, required: true,'data-error': "Debe introducir su correo"
+                .help-block.with-errors
               .form-group
                 = f.label :numero_de_documento
-                = f.text_field :document_id, class: 'form-control', autofocus: true
+                = f.text_field :document_id, class: 'form-control', autofocus: true, required: true,'data-error': "Debe introducir su correo"
+                .help-block.with-errors
               .form-group
                 = f.label :clave
                 %i (para actualizar la informacion introduzca su clave)
                 %br/
-                = f.password_field :current_password, autocomplete: "off", class: 'form-control'
+                = f.password_field :current_password, autocomplete: "off", class: 'form-control',required: true, 'data-error': "Debe introducir su clave", 'data-minlength': "6"
+                .help-block.with-errors
               .actions
                 = f.submit "Actualizar", class: "btn btn-success btn-block"
                 = link_to "Atras", :back, class: "btn btn-default btn-block"
-
-              -# .field
-              -#   = f.label :password
-              -#   %i (leave blank if you don't want to change it)
-              -#   %br/
-              -#   = f.password_field :password, autocomplete: "off"
-              -#   - if @minimum_password_length
-              -#     %br/
-              -#     %em
-              -#       = @minimum_password_length
-              -#       characters minimum
-              -# .field
-              -#   = f.label :password_confirmation
-              -#   %br/
-              -#   = f.password_field :password_confirmation, autocomplete: "off"
