@@ -6,7 +6,7 @@ FactoryGirl.define do
     number_of_passengers 1
     engine_cylinder 1.5
     tons 1.5
-    plate "MyString"
+    plate {SecureRandom.hex(8)}
     user
   end
 end

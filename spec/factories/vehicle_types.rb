@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :vehicle_type do
-    name "MyString"
+    name "Vehicle Type"
   end
 end

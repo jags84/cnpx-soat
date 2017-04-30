@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :policies, only: [:index,:show,:new,:create,:destroy]
   resources :policies do
-    resources :payments, only: [:index,:new,:show,:create]
+    resources :payments, only: [:new,:create]
   end
 
   devise_for :users

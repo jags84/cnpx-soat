@@ -70,9 +70,9 @@ RSpec.describe Policy, type: :model do
   end
 
   describe "when creating policies with identical plates" do
-    let(:policy) { FactoryGirl.build(:policy, plate: 'AAA') }
+    let(:policy) { FactoryGirl.build(:policy) }
     before do
-      FactoryGirl.create(:policy, plate: 'AAA')
+      FactoryGirl.create(:policy, plate: policy.plate)
     end
     it "raises unique validation error" do
       expect(policy).not_to be_valid
