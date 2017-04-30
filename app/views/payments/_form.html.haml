@@ -20,7 +20,7 @@
     .form-group
       %label
         Número de tarjeta
-      %input.form-control#card-number{name: "card-number", type: "number", required: true ,'data-error': "Debe introducir el número de la tarjeta", "pattern": "^[0-9]*$","data-minlength": "13"}
+      %input.form-control#card-number{name: "card-number", type: "number", required: true ,'data-error': "Debe introducir el número de la tarjeta", "pattern": "^[0-9]*$","data-minlength": "13", maxlength:"16"}
       .help-block.with-errors
     .form-group
       %label
@@ -45,7 +45,7 @@
             .help-block.with-errors
           .col-xs-3
             %select.form-control#cc_year{:name => "expiry-year", required: true ,'data-error': "Debe seleccionar el año de vencimiento"}
-              %option 
+              %option
               %option{:value => "2017"} 2017
               %option{:value => "2018"} 2018
               %option{:value => "2019"} 2019
